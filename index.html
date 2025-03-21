@@ -15,6 +15,26 @@
             font-size:30px;
             margin:10px;
         }
+
+        .login-container {
+              position: fixed;
+              top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.9);
+        padding: 20px;
+        border: 1px solid aliceblue;
+        display: none;
+        }
+
+        .login-input {
+          margin: 10px;
+        padding: 5px;
+        background: black;
+        color: aliceblue;
+        border: 1px solid #1e90ff;
+        }
+
         @media (max-width: 768px) {
           h1 {
             font-size: 40px;
@@ -26,10 +46,44 @@
   <h1  >点击开始【故事】</h1>
   <body style="background-color: black;">
     
-  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·序·-</a></li></p>
-  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·壹·-</a></li>
-  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·贰·-</a></li>
-  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·叁·-</a></li>
+  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·序·-</a></p></li>
+  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·壹·-</a></p></li>
+  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·贰·-</a></p></li>
+  <li><p><a href="https://www.bilibili.com/video/BV1s44y1k7pK/?spm_id_from=333.337.search-card.all.click&vd_source=70cf9b0ac31cdf602f4abf77239f5dc3" style="text-shadow: 2px 2px 2px blue;color:aliceblue;text-decoration: none;";>-·叁·-</a></p></li>
+  <li><p><a href="#" onclick="showLogin()" style="text-shadow: 2px 2px 2px aliceblue;color:rgb(69, 75, 80);text-decoration: none;";>-·载入体信息·-</a></p></li>
+  <div class="login-container" id="loginBox"> 
+    <input type="text" id="username" class="login-input" placeholder="载入体">
+    <input type="password" id="password" class="login-input" placeholder="秘钥">
+    <button onclick="checkLogin()" style="background:black;color:aliceblue;border:1px solid #1e90ff;">访问</button>
+</div>
     </center>
+    <script>
+      // 模拟账号库 
+      const accountDB = {
+          "九重秋叶 溯冥":{
+            password: "000000",
+            redirect:"https://forgetmenot-3.github.io/Information/LoadingBody/SuMing/"  
+          }
+      };
+      
+      function showLogin() {
+          document.getElementById('loginBox').style.display = 'block';
+      }
+      
+      function checkLogin() {
+          const user = document.getElementById('username').value;
+          const pwd = document.getElementById('password').value;
+          
+          // 双重验证：账号存在且密码匹配
+          if(accountDB[user] && accountDB[user].password === pwd) {
+              window.location.href = accountDB[user].redirect;
+          } else {
+              alert("认证失败：载入体不存在或秘钥错误");
+              // 清空输入框
+              document.getElementById('username').value = '';
+              document.getElementById('password').value = '';
+          }
+      }
+      </script>
   </body>
 </html>
